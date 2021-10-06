@@ -1,0 +1,24 @@
+import pandas as pd
+import numpy.random as rng_default
+rng=rng_default
+
+def election(df,t):
+    delegates_r=0
+    delegates_d=0
+    delegates_reb=[]
+    delegates_demo=[]
+    regions=list(df.index)
+    for i in range(t):
+        delegates_r=0
+        delegates_d=0
+        for j in regions: 
+            votes_d=rng.normal(df.loc[j,'Dem-Mean'],df.loc[j,'Dem-Std'])
+            votes_r=rng.normal(df.loc[j,'Rep-Mean'],df.loc[j,'Rep-Std'])
+            if votes_d>votes_r:
+                delegates_d+=df.loc[j,'Delegates']
+            else:
+                delegates_r+=df.loc[j,'Delegates']
+        delegates_demo.append(delegates_d)
+        delegates_reb.append(delegates_r)
+
+    return delegates_demo,delegates_reb
