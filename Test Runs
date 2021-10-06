@@ -1,0 +1,64 @@
+#Sample Input 1
+df=pd.DataFrame([[10,2,8,1.5,15],\
+                 [8, 1.5,6,1,10],\
+                 [6, 1,  8,2,13],\
+                 [5, 1,  8,1,10]],\
+                index=['Region A','Region B','Region C','Region D'],\
+                columns=['Dem-Mean','Dem-Std','Rep-Mean','Rep-Std','Delegates'])
+dem,rep=election(df,10)
+print('Democrat   # of Delegates:',dem)
+print('Republican # of Delegates:',rep)
+
+
+#Sample Input 2
+df2=pd.DataFrame([[10,0.01,8,0.01,15],\
+                 [8, 0.01,6,0.01,10],\
+                 [6, 0.01,8,0.01,13],\
+                 [5, 0.01,8,0.01,10]],\
+                index=['Region A','Region B','Region C','Region D'],\
+                columns=['Dem-Mean','Dem-Std','Rep-Mean','Rep-Std','Delegates'])
+dem,rep=election(df2,10)
+print('Democrat   # of Delegates:',dem)
+print('Republican # of Delegates:',rep)
+
+
+#Sample Input 3
+df3=pd.DataFrame([[6,0.01,8,0.01,14],\
+                 [5, 0.01,7,0.01,11],\
+                 [7, 0.01,10,0.01,5],\
+                 [11,0.01,8,0.01,20],\
+                 [5, 0.01,8,0.01,10]],\
+                index=['Region 1','Region 2','Region 3','Region 4','Region 5'],\
+                columns=['Dem-Mean','Dem-Std','Rep-Mean','Rep-Std','Delegates'])
+dem,rep=election(df3,5)
+print('Democrat   # of Delegates:',dem)
+print('Republican # of Delegates:',rep)
+
+
+#Sample Input 4
+data=pd.DataFrame([[20,4,24,6,15],[12,3,10,2,9],[10,2,13,2,8]],\
+                  columns=['Dem-Mean','Dem-Std','Rep-Mean','Rep-Std','Delegates'])
+dem,rep=election(data,1000)
+import pandas as pd
+dem,rep=pd.Series(dem),pd.Series(rep)
+print('Chance of a Democratic majority:',round((dem>rep).mean(),1))
+
+
+#Sample Input 5
+df=pd.DataFrame([[10,2,8,1.5,15],\
+                 [8, 1.5,6,1,10],\
+                 [6, 1,  8,2,13],\
+                 [5, 1,  8,1,10]],\
+                index=['Region A','Region B','Region C','Region D'],\
+                columns=['Dem-Mean','Dem-Std','Rep-Mean','Rep-Std','Delegates'])
+dem,rep=election(df,1000)
+import pandas as pd
+import matplotlib.pyplot as plt
+dem,rep=pd.Series(dem),pd.Series(rep)
+print('Chance of a Democratic majority:',round((dem>rep).mean(),1))
+dem.plot(kind='hist',bins=20,\
+         title='Distribution of Democratic Delegate Count (1000 simulations)')
+plt.show()
+
+
+
